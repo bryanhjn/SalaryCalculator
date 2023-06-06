@@ -1,0 +1,1 @@
+<view class="content"><image class="logo" src="/static/head.jpg"></image><view class="text-area"><text class="title">{{a}}</text><button bindtap="{{b}}">获取日历</button><view wx:if="{{c}}">{{d}}</view><view><button bindtap="{{e}}">获取环境</button> 环境：{{f}}</view></view></view>
