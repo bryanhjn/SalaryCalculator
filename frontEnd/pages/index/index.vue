@@ -3,13 +3,12 @@
 		<image class="logo" src="/static/head.jpg"></image>
 		<view class="text-area">
 			<text class="title">{{title}}</text>
-			<button @click="getCalendar()">获取日历</button>
-			<view v-if="calendarJson.status == 0">{{calendarJson.data[0].almanac}}</view>
-			<view>
-				<button>获取环境</button>
-				环境：{{env}}
-			</view>
 		</view>
+
+		<button class="mar-top" @click="getCalendar()">获取日历</button>
+		<view class="mar-top" v-if="calendarJson.status == 0">{{calendarJson.data[0].almanac}}</view>
+		<button class="mar-top" @click="getHello()">后端说句话</button>
+		<view class="mar-top">后端：{{hello}}</view>
 	</view>
 </template>
 
@@ -19,7 +18,8 @@
 			return {
 				title: '我的小程序跑起来辣！',
 				calendarJson: {},
-				env: ''
+				env: '',
+				hello: '......'
 			}
 		},
 		onLoad() {
@@ -35,16 +35,24 @@
 				uni.request({
 					url: "https://opendata.baidu.com/api.php?query=" + yearAndMonth +
 						"&resource_id=39043&format=json&tn=wisetpl",
-					header: {
-						'Access-Control-Allow-Origin': '*'
-					},
 					success: (result) => {
 						console.log('result:', result.data)
 						this.calendarJson = result.data
 					}
 				})
 			},
-		}
+			getHello() {
+				console.log('getting hello...')
+				uni.request({
+					url: "http://localhost:8080/hello",
+					success: (result) => {
+						console.log('result:', result.data)
+						this.hello = result.data
+					}
+				})
+			}
+
+		},
 	}
 </script>
 
@@ -74,5 +82,9 @@
 	.title {
 		font-size: 36rpx;
 		color: #8f8f94;
+	}
+
+	.mar-top {
+		margin-top: 20rpx;
 	}
 </style>
