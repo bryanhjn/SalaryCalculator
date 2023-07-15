@@ -1,0 +1,2 @@
+1、创建模板：在IDEA中安装EasyCode，在other setting - EasyCode中添加新模板，将代码拷贝进去
+2、使用模板：在IDEA的数据库工具中，选中要创建entity、pk、repository的数据表，右键EasyCode - generate code，选择上一步创建的三个模板即可。可选格式化代码
